@@ -50,6 +50,9 @@
       // mandamos la respuesta
       const { data } = await axios.post(URLAPI, probabilidad);
       console.log(data.posibilidad);
+      // proceso para obtener el gif
+      const urlGif = await obtainGif(data.posibilidad);
+      console.log(urlGif);
       showModal(true);
     }
   });
@@ -66,6 +69,38 @@
         secModal.classList.remove(animation.hide);
         secModal.classList.add("hidden");
       }, 500);
+    }
+  }
+
+  async function obtainGif(numero) {
+    const apiKey = "V5FH60uLQRiD2xjxnNYDLI3YoWDbjIqA";
+
+    function elegirTemaSegunNumero(num) {
+      if (num < 50) {
+        return "sad robot";
+      } else if (num >= 50 && num < 70) {
+        return "medium happy robot";
+      } else {
+        return "happy robot";
+      }
+    }
+
+    const tema = elegirTemaSegunNumero(numero);
+    const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${tema}&limit=50`;
+
+    try {
+      const response = await axios.get(url);
+      const gifs = response.data.data; // Accede a los datos de la respuesta correctamente
+      if (gifs.length > 0) {
+        const indiceAleatorio = Math.floor(Math.random() * gifs.length);
+        const urlGif = gifs[indiceAleatorio].images.original.url;
+        return urlGif;
+      } else {
+        throw new Error("No se encontraron gifs");
+      }
+    } catch (error) {
+      console.error("Error al obtener el GIF:", error);
+      return null;
     }
   }
 })();
