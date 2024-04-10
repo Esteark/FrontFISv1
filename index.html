@@ -17,6 +17,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body class="w-full min-h-screen flex items-center p-6">
     <form
@@ -35,7 +36,7 @@
       <div class="mb-5">
         <label
           for="selectTec"
-          class="block mb-2 font-semibold text-gray-900 dark:text-white text-lg"
+          class="block mb-2 font-semibold text-gray-900 text-[14px] lg:text-lg"
           >¿Qué tan alto es el nivel tencológico de su ciudad ? (califique del 1
           al 10)</label
         >
@@ -49,7 +50,7 @@
       <div class="mb-5">
         <label
           for="selectRec"
-          class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
+          class="block mb-2 text-[14px] lg:text-lg font-medium text-gray-900 dark:text-white"
           >¿Qué tan alto es el nivel económico de su ciudad para poder destinar
           recursos para esta situación ? (califique del 1 al 10)</label
         >
@@ -63,7 +64,7 @@
       <div class="mb-5">
         <label
           for="selectCon"
-          class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
+          class="block mb-2 text-[14px] lg:text-lg font-medium text-gray-900 dark:text-white"
           >Si esto sucediera el día de mañana ¿Qué tan alta tendrá usted la
           confianza en las máquinas para realizar estos trabajos de seguridad?
           (califique del 1 al 10)</label
@@ -87,21 +88,48 @@
     <!-- modal  -->
 
     <section
-      class="fixed top-0 left-0 flex items-center w-full h-screen bg-gradient-to-b from-white to-white bg-opacity-50 px-6 hidden"
+      class="fixed top-0 left-0 flex justify-center items-center w-full h-screen bg-gradient-to-b from-blue-700 to-white bg-opacity-50 px-6 hidden"
       id="secModal"
     >
       <article
-        class="lg:container flex flex-col gap-3 mx-auto p-6 rounded-lg bg-white shadow-lg flex flex-wrap justify-between"
+        class="bg-white rounded-lg w-full lg:w-96 flex flex-col gap-6 items-center shadow-lg p-6 py-16 hidden"
+        id="secLoader"
       >
-        <div class="flex flex-col gap-3">
-          <h2 class="font-bold text-xl">
-            La probabilidad de que los robot puedan <br />
-            ayudarnos con la seguridad de la ciudad es
-          </h2>
-          <p class="font-semibold text-2xl"></p>
-          <p class=""></p>
-          <button>Calcular otra posibilidad</button>
-        </div>
+        <span class="loader"></span>
+        <h2 class="font-semibold text-xl">Consultando probabilidad...</h2>
+      </article>
+
+      <article
+        class="w-full lg:w-96 flex flex-col gap-3 mx-auto p-6 rounded-lg bg-white shadow-lg justify-between items-center hidden py-10"
+        id="secInfoModal"
+      >
+        <img
+          src=""
+          alt="imagen del robot"
+          class="w-full h-auto rounded-lg"
+          id="imgModal"
+        />
+        <h2 class="font-bold text-lg">¡Aquí estan los resultados!</h2>
+        <p class="text-2xl text-center text-[1rem]" id="parrafo">
+          La probabilidad de que los robot puedan <br />
+          ayudarnos con la seguridad de la ciudad fue de
+        </p>
+
+        <h3 class="text-lg">
+          La probabilidad fue de:
+          <span class="font-bold text-xl" id="spanProb">50</span>
+        </h3>
+
+        <button
+          type="button"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm lg:text-lg px-5 py-2.5 me-2 mt-2 flex items-center gap-3 transition-all duration-500 group"
+          id="btnClose"
+        >
+          Calcular otra vez
+          <i
+            class="fa-solid fa-robot group-hover:rotate-[360deg] ttransition-all duration-500"
+          ></i>
+        </button>
       </article>
     </section>
 
