@@ -5,10 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FIS Robots en ciudad</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body class="h-screen flex items-center px-6">
     <form
       class="bg-white p-6 rounded-lg shadow-lg flex flex-col gap-3 w-full lg:container lg:w-1/2 2xl:w-1/4 mx-auto"
+      id="form"
     >
       <div class="flex flex-col gap-3">
         <h1 class="text-2xl font-bold">Seguridad Automatizadas en la Ciudad</h1>
@@ -21,55 +34,82 @@
       </div>
       <div class="mb-5">
         <label
-          for="email"
+          for="selectTec"
           class="block mb-2 font-semibold text-gray-900 dark:text-white text-lg"
           >¿Qué tan alto es el nivel tencológico de su ciudad ? (califique del 1
           al 10)</label
         >
-        <input
-          type="email"
-          id="email"
-          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          placeholder="name@flowbite.com"
-          required
-        />
+        <select
+          id="selectTec"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected value="">Selecciona una opción</option>
+        </select>
       </div>
       <div class="mb-5">
         <label
-          for="password"
+          for="selectRec"
           class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
           >¿Qué tan alto es el nivel económico de su ciudad para poder destinar
           recursos para esta situación ? (califique del 1 al 10)</label
         >
-        <input
-          type="password"
-          id="password"
-          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          required
-        />
+        <select
+          id="selectRec"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected value="">Selecciona una opción</option>
+        </select>
       </div>
       <div class="mb-5">
         <label
-          for="repeat-password"
+          for="selectCon"
           class="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
           >Si esto sucediera el día de mañana ¿Qué tan alta tendrá usted la
           confianza en las máquinas para realizar estos trabajos de seguridad?
           (califique del 1 al 10)</label
         >
-        <input
-          type="password"
-          id="repeat-password"
-          class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          required
-        />
+        <select
+          id="selectCon"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected value="">Selecciona una opción</option>
+        </select>
       </div>
 
       <button
         type="submit"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full lg:w-52"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full lg:w-52 transition-all duration-500"
       >
-        Register new account
+        Calcular posibilidad
       </button>
     </form>
+
+    <!-- modal  -->
+
+    <section
+      class="absolute top-0 left-0 flex items-center w-full h-screen bg-gradient-to-b from-white to-white bg-opacity-50 px-6 hidden"
+      id="secModal"
+    >
+      <article
+        class="lg:container flex flex-col gap-3 mx-auto p-6 rounded-lg bg-white shadow-lg flex flex-wrap justify-between"
+      >
+        <div class="flex flex-col gap-3">
+          <h2 class="font-bold text-xl">
+            La probabilidad de que los robot puedan <br />
+            ayudarnos con la seguridad de la ciudad es
+          </h2>
+          <p class="font-semibold text-2xl"></p>
+          <p class=""></p>
+          <button>Calcular otra posibilidad</button>
+        </div>
+      </article>
+    </section>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./main.js"></script>
   </body>
 </html>
